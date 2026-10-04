@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Sport</title>
+</head>
+<body>
+
+  <h1>Create Sport</h1>
+
+  <form action="/sports/create" method="POST">
+
+    <label for="name">Sport Name:</label>
+    <input type="text" id="name" name="name" required />
+
+    <br /><br />
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description"></textarea>
+
+    <br /><br />
+
+    <button type="submit">Create Sport</button>
+
+  </form>
+
+  <br />
+
+  <a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>

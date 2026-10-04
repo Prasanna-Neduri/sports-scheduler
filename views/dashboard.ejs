@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Sports Scheduler</title>
+</head>
+<body>
+  <h1>Sports Scheduler</h1>
+
+  <h2>Welcome, <%= user.name %>!</h2>
+
+  <p>Your role: <%= user.role %></p>
+
+  <h3>Dashboard</h3>
+
+ <% if (user.role === "admin") { %>
+
+  <h3>Admin Options</h3>
+
+  <ul>
+    <li><a href="/sports">Manage Sports</a></li>
+    <li><a href="/sessions">Manage Sessions</a></li>
+    <li><a href="/reports">View Reports</a></li>
+  </ul>
+
+<% } else { %>
+
+  <h3>Player Options</h3>
+
+  <ul>
+    <li><a href="/sports">Browse Sports</a></li>
+    <li><a href="/sessions">Browse Sessions</a></li>
+    <li><a href="/sessions/create">Create Session</a></li>
+    <li><a href="/sessions/joined">My Joined Sessions</a></li>
+  </ul>
+
+<% } %>
+
+  <form action="/logout" method="POST">
+    <button type="submit">Logout</button>
+  </form>
+</body>
+</html>

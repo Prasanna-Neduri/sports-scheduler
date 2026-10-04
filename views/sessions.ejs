@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sports Scheduler</title>
+</head>
+<body>
+
+    <h1>Sports Scheduler</h1>
+
+    <h2>Available Sessions</h2>
+    <p>
+    <a href="/sessions/create">Create Session</a>
+</p>
+    <% if (sessions.length === 0) { %>
+
+        <p>No sessions have been created yet.</p>
+
+    <% } else { %>
+
+        <% sessions.forEach(session => { %>
+
+            <div>
+                <h3><%= session.sport.name %></h3>
+
+                <p>
+                    Date: <%= session.date %>
+                </p>
+
+                <p>
+                    Time: <%= session.startTime %> - <%= session.endTime %>
+                </p>
+
+                <p>
+                    Maximum Players: <%= session.maxPlayers %>
+                </p>
+                <p>
+    Players Joined: <%= session.players ? session.players.length : 0 %> / <%= session.maxPlayers %>
+</p>
+                <% if (session.cancelled) { %>
+
+                    <p>Session Cancelled</p>
+
+                    <% if (session.cancellationReason) { %>
+                        <p>Reason: <%= session.cancellationReason %></p>
+                    <% } %>
+
+                <% } else { %>
+
+    <p>Available</p>
+
+    <% if (session.players && session.players.length >= session.maxPlayers) { %>
+
+    <button type="button" disabled>Session Full</button>
+
+<% } else { %>
+
+    <form action="/sessions/<%= session.id %>/join" method="POST">
+        <button type="submit">Join Session</button>
+    </form>
+
+<% } %>
+
+    <% if (session.createdBy === user.id) { %>
+        <p>
+        <a href="/sessions/<%= session.id %>/edit">Edit Session</a>
+    </p>
+        <form action="/sessions/<%= session.id %>/cancel" method="POST">
+            <label>Cancellation reason:</label>
+            <input
+                type="text"
+                name="cancellationReason"
+                required
+            >
+            <button type="submit">Cancel Session</button>
+        </form>
+
+    <% } %>
+
+<% } %>
+
+            </div>
+
+            <hr>
+
+        <% }) %>
+
+    <% } %>
+
+    <p>
+        <a href="/dashboard">Back to Dashboard</a>
+    </p>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Joined Sessions</title>
+</head>
+<body>
+
+    <h1>Sports Scheduler</h1>
+
+    <h2>My Joined Sessions</h2>
+
+    <% if (sessions.length === 0) { %>
+
+        <p>You have not joined any sessions yet.</p>
+
+    <% } else { %>
+
+        <% sessions.forEach(session => { %>
+
+            <div>
+                <h3><%= session.sport.name %></h3>
+
+                <p>
+                    Date: <%= session.date %>
+                </p>
+
+                <p>
+                    Time: <%= session.startTime %> - <%= session.endTime %>
+                </p>
+
+                <% if (session.cancelled) { %>
+                    <p>Session Cancelled</p>
+
+                    <% if (session.cancellationReason) { %>
+                        <p>Reason: <%= session.cancellationReason %></p>
+                    <% } %>
+                <% } else { %>
+                    <p>Active</p>
+                <% } %>
+
+            </div>
+
+            <hr>
+
+        <% }) %>
+
+    <% } %>
+
+    <p>
+        <a href="/dashboard">Back to Dashboard</a>
+    </p>
+
+</body>
+</html>

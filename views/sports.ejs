@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sports - Sports Scheduler</title>
+</head>
+<body>
+
+  <h1>Sports Scheduler</h1>
+
+  <h2>Available Sports</h2>
+
+  <% if (sports.length === 0) { %>
+    <p>No sports have been created yet.</p>
+  <% } else { %>
+
+    <ul>
+      <% sports.forEach((sport) => { %>
+        <li>
+  <strong><%= sport.name %></strong>
+
+  <% if (sport.description) { %>
+    - <%= sport.description %>
+  <% } %>
+
+  <% if (user.role === "admin") { %>
+    <a href="/sports/<%= sport.id %>/edit">Edit</a>
+  <% } %>
+</li>
+      <% }) %>
+    </ul>
+
+  <% } %>
+
+  <% if (user.role === "admin") { %>
+    <p>
+      <a href="/sports/create">Create Another Sport</a>
+    </p>
+  <% } %>
+
+  <p>
+    <a href="/dashboard">Back to Dashboard</a>
+  </p>
+
+</body>
+</html>

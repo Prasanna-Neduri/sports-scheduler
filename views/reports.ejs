@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sports Reports</title>
+</head>
+<body>
+
+    <h1>Sports Scheduler</h1>
+
+    <h2>Sports Reports</h2>
+
+    <form action="/reports" method="GET">
+
+        <label>Start Date:</label>
+        <input
+            type="date"
+            name="startDate"
+            value="<%= startDate || '' %>"
+        >
+
+        <label>End Date:</label>
+        <input
+            type="date"
+            name="endDate"
+            value="<%= endDate || '' %>"
+        >
+
+        <button type="submit">Generate Report</button>
+
+    </form>
+
+    <hr>
+
+    <h3>Total Sessions</h3>
+
+    <p>
+        <%= totalSessions %>
+    </p>
+
+    <h3>Sport Popularity</h3>
+
+    <% if (Object.keys(sportPopularity).length === 0) { %>
+
+        <p>No sessions found for this period.</p>
+
+    <% } else { %>
+
+        <ul>
+
+            <% Object.entries(sportPopularity).forEach(([sport, count]) => { %>
+
+                <li>
+                    <strong><%= sport %></strong>:
+                    <%= count %> session(s)
+                </li>
+
+            <% }) %>
+
+        </ul>
+
+    <% } %>
+
+    <p>
+        <a href="/dashboard">Back to Dashboard</a>
+    </p>
+
+</body>
+</html>

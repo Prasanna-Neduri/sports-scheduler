@@ -35,7 +35,6 @@ app.use("/sessions", sessionRoutes);
 app.use("/reports", reportRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Sports Scheduler is running!");
+  res.render("home");
 });
-
 module.exports = app;
